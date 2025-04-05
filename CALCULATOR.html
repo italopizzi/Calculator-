@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Interés Compuesto Diario</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .calculator h2 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin: 0.5rem 0 0.2rem;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .resultado {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>Calculadora de Interés Compuesto Diario</h2>
+    <label for="capital">Capital inicial ($)</label>
+    <input type="number" id="capital" step="0.01">
+
+    <label for="interes">Interés diario (%)</label>
+    <input type="number" id="interes" step="0.01">
+
+    <label for="dias">Cantidad de días</label>
+    <input type="number" id="dias">
+
+    <button onclick="calcularInteresCompuesto()">Calcular</button>
+
+    <div class="resultado" id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularInteresCompuesto() {
+      const capital = parseFloat(document.getElementById('capital').value);
+      const interes = parseFloat(document.getElementById('interes').value) / 100;
+      const dias = parseInt(document.getElementById('dias').value);
+
+      if (isNaN(capital) || isNaN(interes) || isNaN(dias)) {
+        document.getElementById('resultado').innerText = 'Por favor, ingresa todos los valores.';
+        return;
+      }
+
+      const resultado = capital * Math.pow((1 + interes), dias);
+      document.getElementById('resultado').innerText = `Resultado: $${resultado.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
